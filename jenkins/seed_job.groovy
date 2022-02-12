@@ -36,6 +36,12 @@ pipelineJob(pipelineName) {
     stringParam("SOURCE_MODEL_PACKAGE_GROUP_NAME", sourceModelPackageGroupName, "Model Package Group Name")
     stringParam("MODEL_EXECUTION_ROLE_ARN", modelExecutionRole, "Role to be used by Model execution.")
     stringParam("AWS_REGION", awsRegion, "AWS region to use for creating entity")
+    credentialsParam("AWS_CREDENTIAL") {
+    description("AWS credentials to use for creating entity")
+    defaultValue(awsCredentialId)
+    type("com.cloudbees.jenkins.plugins.awscredentials.AWSCredentialsImpl")
+    required(true)
+    }
   }
   definition {
     cpsScm {
